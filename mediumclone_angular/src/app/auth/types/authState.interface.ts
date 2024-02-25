@@ -1,3 +1,3 @@
-export interface authStateInterface {
+export interface AuthStateInterface {
     isSubmitting: boolean;
 }

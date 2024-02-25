@@ -4,6 +4,9 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { register } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
+import { selectIsSubmitting } from '../../store/reducers';
+import { AuthStateInterface } from '../../types/authState.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
     selector: 'mc-register',
@@ -11,6 +14,7 @@ import { RegisterRequestInterface } from '../../types/registerRequest.interface'
     imports: [
         RouterLink,
         ReactiveFormsModule,
+        CommonModule,
     ],
     standalone: true,
 })
@@ -20,7 +24,9 @@ export class RegisterComponent {
         email: ['', Validators.required],
         password: ['', Validators.required],
     });
-    constructor(private formBuilder: FormBuilder, private store: Store) {}
+    isSubmitting$ = this.store.select(selectIsSubmitting);
+
+    constructor(private formBuilder: FormBuilder, private store: Store<{auth: AuthStateInterface}>) {}
 
     onSubmit() {
         console.log('form', this.form.getRawValue());
