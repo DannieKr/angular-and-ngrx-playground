@@ -4,10 +4,10 @@ import { FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { authActions } from '../../store/actions';
 import { RegisterRequestInterface } from '../../types/registerRequest.interface';
-import { selectIsSubmitting } from '../../store/reducers';
-import { AuthStateInterface } from '../../types/authState.interface';
+import { selectIsSubmitting, selectValidationErrors } from '../../store/reducers';
 import { CommonModule } from '@angular/common';
-import { AuthServices } from '../../services/auth.services';
+import { combineLatest } from 'rxjs';
+import { BackendErrorMessages } from '../../../shared/components/backendErrorMessages/backendErrorMessages.component';
 
 @Component({
     selector: 'mc-register',
@@ -16,6 +16,7 @@ import { AuthServices } from '../../services/auth.services';
         RouterLink,
         ReactiveFormsModule,
         CommonModule,
+        BackendErrorMessages
     ],
     standalone: true,
 })
@@ -25,7 +26,10 @@ export class RegisterComponent {
         email: ['', Validators.required],
         password: ['', Validators.required],
     });
-    isSubmitting$ = this.store.select(selectIsSubmitting);
+    data$ = combineLatest({
+        isSubmitting: this.store.select(selectIsSubmitting),
+        backendErrors: this.store.select(selectValidationErrors),
+    })
 
     constructor(private formBuilder: FormBuilder, private store: Store) {}
 
