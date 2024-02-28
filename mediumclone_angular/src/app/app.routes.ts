@@ -4,5 +4,9 @@ export const appRoutes: Route[] = [
     {
         path: 'register',
         loadChildren: () => import('src/app/auth/auth.routes').then((module) => module.registerRoutes)
+    },
+    {
+        path: 'login',
+        loadChildren: () => import('src/app/auth/auth.routes').then((module) => module.loginRoutes)
     }
 ];
