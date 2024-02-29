@@ -5,6 +5,8 @@ import { selectFeedData, selectIsLoading, selectError } from './store/reducers';
 import { CommonModule } from '@angular/common';
 import { combineLatest } from 'rxjs';
 import { RouterLink } from '@angular/router';
+import { ErrorMessageComponent } from '../errorMessage/errorMessage.component';
+import { LoadingComponent } from '../loading/loading.component';
 
 @Component({
     selector: 'mc-feed',
@@ -13,6 +15,8 @@ import { RouterLink } from '@angular/router';
     imports: [
         CommonModule,
         RouterLink,
+        ErrorMessageComponent,
+        LoadingComponent,
     ],
 })
 export class FeedComponent implements OnInit{
