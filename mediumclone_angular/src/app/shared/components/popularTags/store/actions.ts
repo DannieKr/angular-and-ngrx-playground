@@ -1,5 +1,5 @@
 import { props, createActionGroup, emptyProps } from '@ngrx/store';
-import { PopularTagType } from '../../feed/types/popularTag.type';
+import { PopularTagType } from '../../../types/popularTag.type';
 
 export const popularTagsActions = createActionGroup({
     source: 'popular tags',

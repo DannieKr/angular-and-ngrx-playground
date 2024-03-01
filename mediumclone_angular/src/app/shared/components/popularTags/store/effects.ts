@@ -3,7 +3,7 @@ import { inject } from '@angular/core';
 import { switchMap, of, map, catchError } from 'rxjs';
 import { popularTagsActions } from './actions';
 import { PopularTagService } from '../services/popularTag.service';
-import { PopularTagType } from '../../feed/types/popularTag.type';
+import { PopularTagType } from '../../../types/popularTag.type';
 
 export const getPopularTagsEffect = createEffect(
     (
