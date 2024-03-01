@@ -36,5 +36,13 @@ export const appRoutes: Route[] = [
     {
         path: 'settings',
         loadChildren: () => import('src/app/settings/settings.routes').then((module) => module.routes)
+    },
+    {
+        path: 'profiles/:slug',
+        loadChildren: () => import('src/app/userProfile/userProfile.routes').then((module) => module.routes)
+    },
+    {
+        path: 'profiles/:slug/favorites',
+        loadChildren: () => import('src/app/userProfile/userProfile.routes').then((module) => module.routes)
     }
 ];
