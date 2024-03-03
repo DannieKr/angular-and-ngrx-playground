@@ -13,7 +13,7 @@ const mealFeature = createFeature({
     reducer: createReducer(
         initialState,
         on(mealActions.getMeal, (state) => ({...state, isLoading: true})),
-        on(mealActions.getMealSuccess, (state, action) => ({...state, isLoading: true, data: action.meal})),
+        on(mealActions.getMealSuccess, (state, action) => ({...state, isLoading: false, data: action.meal})),
         on(mealActions.getMealFailure, (state) => ({...state, isLoading: false})),
     )
 })
